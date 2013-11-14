@@ -14,7 +14,7 @@ Import Github activity into WordPress posts, attributed to respective users.
 
 **Development of this plugin is done [on GitHub](https://github.com/x-team/wp-github-connector). Pull requests welcome. Please see [issues](https://github.com/x-team/wp-github-connector/issues) reported there before going to the plugin forum.**
 
-[![Build Status](.png)]()
+[![Build Status](https://travis-ci.org/x-team/wp-github-connector.png)](https://travis-ci.org/x-team/wp-github-connector)
 
 ## Installation ##
 
