@@ -42,7 +42,7 @@ class GitHubConnector_Receiver {
 	public function receive() {
 		global $wpdb;
 
-		
+		# debug, should be removed
 		// $payload = json_decode( $_REQUEST['payload'] );
 		$payload = json_decode(
 			'{
@@ -198,10 +198,10 @@ class GitHubConnector_Receiver {
 	 * Translate github username to wordpress user
 	 * 
 	 * @param  string $username GitHub username
-	 * @return int              User ID
+	 * @return WP_User          Matching User
 	 */
 	public function github_user_to_wp( $username ) {
-		$id    = null;
+		$user  = null;
 		$query = new WP_User_Query(
 			array(
 			'meta_key'   => 'github_username',
@@ -209,10 +209,10 @@ class GitHubConnector_Receiver {
 			)
 			);
 		if ( $users = $query->results ) {
-			$id = $users[0]->ID;
-			self::$imported['users'][$username] = $id;
+			$user = $users[0];
+			self::$imported['users'][$username] = $user;
 		}
-		return $id;
+		return $user;
 	}
 
 	public function import( $payload ) {
@@ -251,13 +251,13 @@ class GitHubConnector_Receiver {
 		}
 
 		foreach ( $commits as $commit ) {
-			$user_id = $this->github_user_to_wp( $commit->committer->username );
+			$user = $this->github_user_to_wp( $commit->committer->username );
 
 			$data = apply_filters(
 				'gc_commit_data',
 				array(
 					'post_type' => GitHubConnector_Settings::$options['post_settings_post_type'],
-					'post_author' => $user_id,
+					'post_author' => $user ? $user->ID : 'null',
 					'post_title' => $commit->id,
 					'post_content' => $commit->message,
 					'post_date_gmt' => $commit->timestamp,
@@ -268,6 +268,7 @@ class GitHubConnector_Receiver {
 						'_paths_removed' => $commit->removed,
 						'_paths_modified' => $commit->modified,
 						'_github_url' => $commit->url,
+						'_github_author' => $commit->committer->username,
 						)
 					)
 				);
