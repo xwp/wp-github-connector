@@ -49,15 +49,16 @@ class GitHubConnector {
 	public function __construct() {
 		self::$class_name = strtolower( __CLASS__ );
 
-		add_action( 'init', array( $this, 'setup' ), 3 );
+		add_action( 'init', array( $this, 'define_constants' ), 1 );
+
+		add_action( 'init', array( $this, 'setup' ), 1 );
 
 		add_action( 'init', array( $this, 'register_post_type' ) );
-
-		add_action( 'plugins_loaded', array( $this, 'define_constants' ), 1 );
 
 		add_action( 'plugins_loaded', array( $this, 'i18n' ), 2 );
 
 		add_action( 'wp_ajax_nopriv_gc_webhook', array( $this, 'webhook_receive' ) );
+		
 	}
 
 	/**
@@ -75,6 +76,10 @@ class GitHubConnector {
 		// User profile fields
 		require_once( GITHUB_CONNECTOR_INCLUDES_DIR . '/' . self::$class_name . '-users.php' );
 		$user = new GitHubConnector_Users;
+
+		// Widgets
+		require_once( GITHUB_CONNECTOR_INCLUDES_DIR . '/widgets/' . self::$class_name . '-widget-recent-commits.php' );
+		add_action( 'widgets_init', array( 'GitHubConnector_Widget_RecentCommits', 'register' ) );
 	}
 
 	/**
