@@ -86,10 +86,10 @@ class GitHubConnector_Receiver {
 		if ( $post_id = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title = %s", $repo_id ) ) ) { // db call okay, cache okay
 			// Changed ?
 			if ( $hash != get_post_field( 'post_content_filtered', $post_id ) ) {
-				wp_update_post( $repo_core + array( 'ID' => $post_id, 'post_content_filtered' => $hash ) );
+				wp_update_post( array_merge( $repo_core, array( 'ID' => $post_id, 'post_content_filtered' => $hash ) ) );
 			}
 		} else {
-			$post_id = wp_insert_post( $repo_core + array( 'post_content_filtered' => $hash ) );
+			$post_id = wp_insert_post( array_merge( $repo_core, array( 'post_content_filtered' => $hash ) ) );
 		}
 
 		$this->import_commits( $payload, $post_id, $repo_core );
