@@ -95,8 +95,8 @@ class GitHubConnector_Settings {
 	public function register_menu() {
 		if ( current_user_can( 'manage_options' ) ) {
 			self::$screen_id = add_options_page(
-				__( 'GitHubConnector', 'github_connector' ),
-				__( 'GitHubConnector', 'github_connector' ),
+				__( 'GitHub Connector', 'github_connector' ),
+				__( 'GitHub Connector', 'github_connector' ),
 				'manage_options',
 				self::KEY,
 				array( $this, 'render_page' )
@@ -134,7 +134,7 @@ class GitHubConnector_Settings {
 		?>
 		<div class="wrap">
 			<?php screen_icon( 'tools' ); ?>
-			<h2><?php _e( 'GitHubConnector Options', 'github_connector' ) ?></h2>
+			<h2><?php _e( 'GitHub Connector Options', 'github_connector' ) ?></h2>
 
 			<?php if ( isset( $message ) ) : ?>
 			<div class="updated">
