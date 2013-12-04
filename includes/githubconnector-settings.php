@@ -131,6 +131,8 @@ class GitHubConnector_Settings {
 				);
 		}
 
+		$error = get_option( 'github_connector_error' );
+
 		?>
 		<div class="wrap">
 			<?php screen_icon( 'tools' ); ?>
@@ -141,6 +143,17 @@ class GitHubConnector_Settings {
 				<p><?php echo $message // xss okay ?></p>
 			</div>
 			<?php endif ?>
+			<?php if ( $error ) : ?>
+			<div class="error">
+				<details style="margin: 0.5em 0; padding 2px;">
+					<summary>
+						<strong><?php esc_html_e( 'Error:', 'github-connector' ) ?></strong>
+						<?php echo esc_html( $error['message'] ) ?>
+					</summary>
+					<pre><?php echo esc_html( print_r( $error, true ) ); ?></pre>
+				</details>
+			</div>
+			<?php endif; ?>
 
 			<h2 class="nav-tab-wrapper">
 				<a href="#tab-settings" class="nav-tab">
