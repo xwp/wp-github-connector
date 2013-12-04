@@ -95,7 +95,7 @@ class GitHubConnector_Receiver {
 			$user = $this->github_user_to_wp( $commit->committer->username );
 
 			$data = apply_filters(
-				'gc_commit_data',
+				'github_commit_data',
 				array(
 					'post_type' => GitHubConnector_Settings::$options['post_settings_post_type'],
 					'post_author' => $user ? $user->ID : 'null',
@@ -121,7 +121,7 @@ class GitHubConnector_Receiver {
 				}
 			}
 
-			do_action( 'gc_commit_saved', $post_id, $data );
+			do_action( 'github_commit_saved', $post_id, $data );
 		}
 
 	}

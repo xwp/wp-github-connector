@@ -57,7 +57,7 @@ class GitHubConnector {
 
 		add_action( 'plugins_loaded', array( $this, 'i18n' ), 2 );
 
-		add_action( 'wp_ajax_nopriv_gc_webhook', array( $this, 'webhook_receive' ) );
+		add_action( 'wp_ajax_nopriv_github_webhook', array( $this, 'webhook_receive' ) );
 		
 	}
 
@@ -134,7 +134,7 @@ class GitHubConnector {
 
 		register_post_type(
 			GitHubConnector_Settings::$options['post_settings_post_type'],
-			apply_filters( 'gc_register_post_type_args', $args )
+			apply_filters( 'github_register_post_type_args', $args )
 			);
 	}
 
@@ -165,7 +165,7 @@ class GitHubConnector {
 	/**
 	 * Handle webhook updates from GitHub, authenticates request against local authentication key
 	 * @access public
-	 * @action wp_ajax_gc_webhook
+	 * @action wp_ajax_github_webhook
 	 * @return void
 	 */
 	public function webhook_receive() {

@@ -232,11 +232,11 @@ class GitHubConnector_Settings {
 						),
 					array(
 						'name'    => 'post_type',
-						'default' => apply_filters( 'gc_register_post_type_slug', 'github_commit' ),
+						'default' => apply_filters( 'github_register_post_type_slug', 'github_commit' ),
 						),
 					array(
 						'name'    => 'post_type_repo',
-						'default' => apply_filters( 'gc_register_post_type_repo_slug', 'github_repo' ),
+						'default' => apply_filters( 'github_register_post_type_repo_slug', 'github_repo' ),
 						),
 					),
 				),
