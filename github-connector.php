@@ -169,19 +169,43 @@ class GitHubConnector {
 	 * @return void
 	 */
 	public function webhook_receive() {
-		// Authenticate request against local_auth
-		if ( filter_input( INPUT_GET, 'auth' ) != GitHubConnector_Settings::$options['security_local_auth'] ) {
-			wp_die( 'Wrong authentication key', 'Hacking ?!' );
-			exit;
-		}
+		try {
+			// Authenticate request against local_auth
+			if ( filter_input( INPUT_GET, 'auth' ) !== GitHubConnector_Settings::$options['security_local_auth'] ) {
+				throw new GitHubConnectorException( 'Wrong authentication key', 403 );
+			}
 
-		require_once( GITHUB_CONNECTOR_INCLUDES_DIR . '/' . self::$class_name . '-receiver.php' );
-		$receiver = new GitHubConnector_Receiver();
-		$receiver->receive();
-		die();
+			require_once( GITHUB_CONNECTOR_INCLUDES_DIR . '/' . self::$class_name . '-receiver.php' );
+			$receiver = new GitHubConnector_Receiver();
+			$receiver->receive();
+			delete_option( 'github_connector_error' );
+			wp_send_json_success();
+		}
+		catch( Exception $e ) {
+			$code    = 500;
+			$message = 'Internal Server Error';
+			if ( $e instanceof GitHubConnectorException ) {
+				$message = $e->getMessage();
+				if ( $e->getCode() >= 400 && $e->getCode() < 600 ) {
+					$code = $e->getCode();
+				}
+			}
+			else {
+				error_log( __FUNCTION__ . ': ' . $e->getMessage() );
+			}
+			update_option( 'github_connector_error', array(
+				'message' => $e->getMessage(),
+				'code' => $e->getCode(),
+				'query' => wp_unslash( $_REQUEST ),
+			) );
+			status_header( $code );
+			wp_send_json_error( $message );
+		}
 	}
 
 }
+
+class GitHubConnectorException extends Exception {}
 
 // Register global plugin controller
 $GLOBALS['github_connector'] = new GitHubConnector();

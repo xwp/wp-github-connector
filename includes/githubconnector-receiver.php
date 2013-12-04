@@ -26,12 +26,17 @@ class GitHubConnector_Receiver {
 	 * Parse webhook payload
 	 * 
 	 * @see  https://help.github.com/articles/post-receive-hooks
+	 * @throws GitHubConnectorException
 	 * @return void
 	 */
 	public function receive() {
-		global $wpdb;
-
-		$payload = json_decode( filter_input( INPUT_POST, 'payload', FILTER_SANITIZE_STRING ) );
+		$payload = json_decode( filter_input( INPUT_POST, 'payload', FILTER_SANITIZE_STRING ), false );
+		if ( empty( $payload ) ) {
+			throw new GitHubConnectorException( 'Missing payload' );
+		}
+		if ( ! is_object( $payload ) ) {
+			throw new GitHubConnectorException( 'Payload is not an object' );
+		}
 		do_action( 'github_connector_webhook', $payload );
 	}
 
@@ -58,6 +63,12 @@ class GitHubConnector_Receiver {
 
 	public function import( $payload ) {
 		global $wpdb;
+		if ( empty( $payload->repository->owner->name ) ) {
+			throw new GitHubConnectorException( 'Missing payload->repository->owner->name' );
+		}
+		if ( empty( $payload->repository->name ) ) {
+			throw new GitHubConnectorException( 'Missing payload->repository->name' );
+		}
 		$repo_id = $payload->repository->owner->name . '/' . $payload->repository->name;
 
 		// Get repo details, insert/update post object
