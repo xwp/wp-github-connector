@@ -30,7 +30,8 @@ class GitHubConnector_Receiver {
 	 * @return void
 	 */
 	public function receive() {
-		$payload = json_decode( filter_input( INPUT_POST, 'payload', FILTER_SANITIZE_STRING ), false );
+		$payload_raw = filter_input( INPUT_POST, 'payload' );
+		$payload = json_decode( $payload_raw, false );
 		if ( empty( $payload ) ) {
 			throw new GitHubConnectorException( 'Missing payload' );
 		}
