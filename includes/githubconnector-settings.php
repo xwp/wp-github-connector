@@ -145,7 +145,7 @@ class GitHubConnector_Settings {
 			<?php endif ?>
 			<?php if ( $error ) : ?>
 			<div class="error">
-				<details style="margin: 0.5em 0; padding 2px;">
+				<details style="margin: 0.5em 0; padding 2px; overflow: auto;">
 					<summary>
 						<strong><?php esc_html_e( 'Error:', 'github-connector' ) ?></strong>
 						<?php echo esc_html( $error['message'] ) ?>
