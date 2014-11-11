@@ -3,18 +3,18 @@
 
 Import Github activity into WordPress posts, attributed to respective users.
 
-**Contributors:** [x-team](http://profiles.wordpress.org/x-team), [shadyvb](http://profiles.wordpress.org/shadyvb)  
+**Contributors:** [xwp](http://profiles.wordpress.org/xwp), [shadyvb](http://profiles.wordpress.org/shadyvb)  
 **Tags:** [github](http://wordpress.org/plugins/tags/github), [issues](http://wordpress.org/plugins/tags/issues), [connector](http://wordpress.org/plugins/tags/connector), [commits](http://wordpress.org/plugins/tags/commits)  
 **Requires at least:** 3.6  
 **Tested up to:** 3.7.1  
 **Stable tag:** trunk (master)  
 **License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)  
 
+[![Build Status](https://travis-ci.org/xwp/wp-github-connector.png?branch=master)](https://travis-ci.org/xwp/wp-github-connector) 
+
 ## Description ##
 
-**Development of this plugin is done [on GitHub](https://github.com/x-team/wp-github-connector). Pull requests welcome. Please see [issues](https://github.com/x-team/wp-github-connector/issues) reported there before going to the plugin forum.**
-
-[![Build Status](https://travis-ci.org/x-team/wp-github-connector.png)](https://travis-ci.org/x-team/wp-github-connector)
+**Development of this plugin is done [on GitHub](https://github.com/xwp/wp-github-connector). Pull requests welcome. Please see [issues](https://github.com/xwp/wp-github-connector/issues) reported there before going to the plugin forum.**
 
 ## Installation ##
 

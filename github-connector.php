@@ -1,18 +1,18 @@
 <?php
 /**
  * Plugin Name: GitHub Connector
- * Plugin URI: http://x-team.com
+ * Plugin URI: https://xwp.co
  * Description: Imports GitHub commits/comments as posts
  * Version: 0.1
- * Author: X-Team, Shady Sharaf
- * Author URI: http://x-team.com/wordpress/
+ * Author: XWP, Shady Sharaf
+ * Author URI: https://xwp.co/
  * License: GPLv2+
  * Text Domain: github_connector
  * Domain Path: /languages
  */
 
 /**
- * Copyright (c) 2013 X-Team (http://x-team.com/)
+ * Copyright (c) 2013 XWP (https://xwp.co/)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 2 or, at

@@ -3,8 +3,8 @@
  * Users class
  * Handles management of WP Users against GitHub Users
  *
- * @author X-Team <x-team.com>
- * @author Shady Sharaf <shady@x-team.com>
+ * @author XWP <xwp.co>
+ * @author Shady Sharaf <shady@xwp.co>
  */
 class GitHubConnector_Users {
 

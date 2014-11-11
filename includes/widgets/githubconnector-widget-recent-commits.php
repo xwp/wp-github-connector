@@ -2,8 +2,8 @@
 /**
  * Recent GitHub Commits
  *
- * @author X-Team <x-team.com>
- * @author Shady Sharaf <shady@x-team.com>
+ * @author XWP <xwp.co>
+ * @author Shady Sharaf <shady@xwp.co>
  */
 class GitHubConnector_Widget_RecentCommits extends WP_Widget {
 
