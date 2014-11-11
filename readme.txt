@@ -1,5 +1,5 @@
 === Github Connector ===
-Contributors:      X-team, shadyvb
+Contributors:      xwp, shadyvb
 Tags:              github, issues, connector, commits
 Requires at least: 3.6
 Tested up to:      3.7.1
@@ -12,7 +12,7 @@ Import Github activity into WordPress posts, attributed to respective users.
 == Description ==
 
 
-**Development of this plugin is done [on GitHub](https://github.com/x-team/wp-github-connector). Pull requests welcome. Please see [issues](https://github.com/x-team/wp-github-connector/issues) reported there before going to the plugin forum.**
+**Development of this plugin is done [on GitHub](https://github.com/xwp/wp-github-connector). Pull requests welcome. Please see [issues](https://github.com/xwp/wp-github-connector/issues) reported there before going to the plugin forum.**
 
 == Installation ==
 
